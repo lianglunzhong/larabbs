@@ -28,7 +28,7 @@ $api->version('v1', [
     });
 
     $api->group([
-        'middleware' => 'api.throttle',
+        'middleware' => 'api.throttle', // 调用频率限制
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
@@ -78,7 +78,7 @@ $api->version('v1', [
     });
 
     $api->group([
-        'middleware' => 'api.throttle',
+        'middleware' => 'api.throttle', // 调用频率限制
         'limit' => config('api.rate_limits.access.limit'),
         'expires' => config('api.rate_limits.access.expires'),
     ], function ($api) {
