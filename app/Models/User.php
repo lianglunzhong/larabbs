@@ -14,6 +14,7 @@ class User extends Authenticatable implements JWTSubject
 
     use Traits\ActiveUserHelper;
     use Traits\LastActivedAtHelper;
+    use Traits\HashIdHelper;
 
     use Notifiable {
         notify as protected laravelNofify;
@@ -103,7 +104,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function setAvatarAttribute($path)
     {
-        if ( ! starts_with($path, '/uploads/images/avatars/') && ! starts_with($path, '/images/users/') ) {
+        if (! starts_with($path, '/uploads/images/avatars/') && ! starts_with($path, '/images/users/')) {
             $path = '/uploads/images/avatars/' . $path;
         }
 

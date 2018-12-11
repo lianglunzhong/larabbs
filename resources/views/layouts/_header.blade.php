@@ -75,7 +75,7 @@
                             @endcan
 
                             <li>
-                                <a href="{{ route('users.show', Auth::id()) }}">
+                                <a href="{{ route('users.show', Auth::user()) }}">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     个人中心
                                 </a>
