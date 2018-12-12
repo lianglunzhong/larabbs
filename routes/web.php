@@ -46,3 +46,6 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'update', '
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
 
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
+// rap2hpoutre/laravel-log-viewer 日志查看路由
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
