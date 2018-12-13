@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use EloquentFilter\Filterable;
+
 class Topic extends Model
 {
+
+    use Filterable;
+
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
     public function category()
@@ -29,7 +34,7 @@ class Topic extends Model
     public function scopeWithOrder($query, $order)
     {
         // 不同的排序，使用不同的数据读取逻辑
-        switch($order) {
+        switch ($order) {
             case 'recent':
                 $query->recent();
                 break;

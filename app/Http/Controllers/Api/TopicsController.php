@@ -12,24 +12,7 @@ class TopicsController extends Controller
 {
     public function index(Request $request, Topic $topic)
     {
-        $query = $topic->query();
-
-        if ($category_id = $request->category_id) {
-            $query->where('category_id', $category_id);
-        }
-
-        // 为了说明 N+1 问题，不使用 scopeWithOrder (其实当我们返回的是集合的时候，DingoApi 根据 include 参数以及 defaultInclude 帮助我们进行预加载，并不会产生 N+1 问题)
-        switch($request->order) {
-            case 'recent':
-                $query->recent();
-                break;
-
-            default:
-                $query->recentReplied();
-                break;
-        }
-
-        $topics = $query->paginate(20);
+        $topics = $topic->filter($request->all())->paginate(20);
 
         return $this->response->paginator($topics, new TopicTransformer());
     }
@@ -68,7 +51,7 @@ class TopicsController extends Controller
         return $this->response->noContent();
     }
 
-    public function userIndex(User $user, Request $request)
+    public function userIndex(User $user)
     {
         $topics = $user->topics()->recent()->paginate(20);
 
