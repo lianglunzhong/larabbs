@@ -115,7 +115,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function getAvatarAttribute($path)
     {
-        if (!starts_with($path, 'http://') || !starts_with($path, 'https://')) {
+        if (!starts_with($path, 'http://') && !starts_with($path, 'https://')) {
             $path = config('app.url') . $path;
         }
 
