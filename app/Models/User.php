@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Watson\Rememberable\Rememberable;
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasRoles;
+    use Rememberable;
 
     use Traits\ActiveUserHelper;
     use Traits\LastActivedAtHelper;
