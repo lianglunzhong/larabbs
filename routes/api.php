@@ -21,9 +21,9 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'bindings', 'change-locale'] //serializer 减少一次嵌套， bindings 把dingo api路由的参数自动绑定到模型上
-], function($api) {
-    $api->get('version', function() {
+    'middleware' => ['serializer:array', 'bindings', 'change-locale', 'cors'] //serializer 减少一次嵌套， bindings 把dingo api路由的参数自动绑定到模型上
+], function ($api) {
+    $api->get('version', function () {
         return response('this is version v1');
     });
 
@@ -31,7 +31,7 @@ $api->version('v1', [
         'middleware' => 'api.throttle', // 调用频率限制
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
-    ], function($api) {
+    ], function ($api) {
         // 短信验证码
         $api->post('verificationCodes', 'VerificationCodesController@store')
             ->name('api.verificationCodes.store');
@@ -121,7 +121,7 @@ $api->version('v1', [
 
 
         /** 需要 token 验证的接口 */
-        $api->group(['middleware' => 'api.auth'], function($api) {
+        $api->group(['middleware' => 'api.auth'], function ($api) {
             // 当前登录用户信息
             $api->get('user', 'UsersController@me')
                 ->name('api.user.show');
@@ -183,8 +183,8 @@ $api->version('v1', [
     });
 });
 
-$api->version('v2', function($api) {
-    $api->get('version', function() {
+$api->version('v2', function ($api) {
+    $api->get('version', function () {
         return response('this is version v2');
     });
 });
