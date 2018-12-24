@@ -51,3 +51,9 @@ Route::get('permission-denied', 'PagesController@permissionDenied')->name('permi
 
 // rap2hpoutre/laravel-log-viewer 日志查看路由
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+
+// package chumper/zipper
+Route::get('zip', 'ZipController@index')->name('zip.index');
+Route::post('zip/download', 'ZipController@download')->name('zip.download');
+Route::post('zip/upload', 'ZipController@upload')->name('zip.upload');
