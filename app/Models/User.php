@@ -8,6 +8,7 @@ use Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Watson\Rememberable\Rememberable;
+use QrCode;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -130,5 +131,15 @@ class User extends Authenticatable implements JWTSubject
           $credentials['phone'] = $username;
 
         return self::where($credentials)->first();
+    }
+
+    public function qrcode()
+    {
+        return QrCode::format('png')
+            ->size(300)
+            ->margin(0)
+            ->merge($this->avatar, 0.35, true)
+            ->errorCorrection('H')
+            ->generate(route('users.show', $this));
     }
 }

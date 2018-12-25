@@ -13,13 +13,25 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'downloadQrcode']]);
     }
 
     public function show(User $user)
     {
+        $qrcode = $user->qrcode();
+
         $topics = $user->topics()->recent()->paginate(5);
-        return view('users.show', compact('user', 'topics'));
+        return view('users.show', compact('user', 'topics', 'qrcode'));
+    }
+
+    public function downloadQrcode(User $user)
+    {
+        return response()->stream(function () use ($user) {
+            echo $user->qrcode();
+        }, 200, [
+            'Content-type' => 'image/png',
+            'Content-Disposition' => "attachment; filename=user-{$user->id}-qrcode.png"
+        ]);
     }
 
     public function edit(User $user)
