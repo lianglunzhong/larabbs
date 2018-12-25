@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Milon\Barcode\BarcodeServiceProvider::class,
+        Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -179,8 +181,6 @@ return [
         App\Providers\EasySmsServiceProvider::class,
         App\Providers\JpushServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
-        Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
-
     ],
 
     /*
@@ -230,6 +230,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // milon/barcode
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ],
 
 ];

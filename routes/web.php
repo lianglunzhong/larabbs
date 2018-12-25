@@ -33,6 +33,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 Route::post('users/{user}/qrcode', 'UsersController@downloadQrcode')->name('users.qrcode');
+Route::get('users/{user}/barcode', 'UsersController@barcode')->name('users.barcode');
 
 Route::get('topics/{topic}/pdf', 'TopicsController@pdf')->name('topics.pdf');
 Route::get('topics/{topic}/image', 'TopicsController@image')->name('topics.image');
