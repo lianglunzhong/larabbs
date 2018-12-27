@@ -35,6 +35,11 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 Route::post('users/{user}/qrcode', 'UsersController@downloadQrcode')->name('users.qrcode');
 Route::get('users/{user}/barcode', 'UsersController@barcode')->name('users.barcode');
 
+// package Maatwebsite/Laravel-Excel
+Route::get('topics/excel', 'TopicsController@excel')->name('topics.excel');
+Route::post('topics/export', 'TopicsController@export')->name('topics.export');
+Route::post('topics/import', 'TopicsController@import')->name('topics.import');
+
 Route::get('topics/{topic}/pdf', 'TopicsController@pdf')->name('topics.pdf');
 Route::get('topics/{topic}/image', 'TopicsController@image')->name('topics.image');
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
@@ -53,7 +58,6 @@ Route::get('permission-denied', 'PagesController@permissionDenied')->name('permi
 
 // rap2hpoutre/laravel-log-viewer 日志查看路由
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-
 
 // package chumper/zipper
 Route::get('zip', 'ZipController@index')->name('zip.index');

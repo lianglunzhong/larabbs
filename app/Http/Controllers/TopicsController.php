@@ -13,12 +13,14 @@ use Auth;
 use App\Handlers\ImageUploadHandler;
 use PDF;
 use SnappyImage;
+use Excel;
+use App\Exports\TopicExport;
 
 class TopicsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'pdf', 'image']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'pdf', 'image', 'excel', 'export', 'import']]);
     }
 
     public function pdf(Topic $topic)
@@ -139,5 +141,15 @@ class TopicsController extends Controller
         }
 
         return $data;
+    }
+
+    public function excel()
+    {
+        return view('topics.excel');
+    }
+
+    public function export(Request $request, TopicExport $export)
+    {
+        return $export->withinDays($request->days);
     }
 }
