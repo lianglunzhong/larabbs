@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class TopicExport implements Responsable, FromQuery, WithMapping, WithHeadings, WithTitle, ShouldAutoSize, WithMultipleSheets
+class TopicsExport implements Responsable, FromQuery, WithMapping, WithHeadings, WithTitle, ShouldAutoSize, WithMultipleSheets
 {
     use Exportable;
 

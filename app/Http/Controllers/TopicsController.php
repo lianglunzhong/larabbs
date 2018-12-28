@@ -14,7 +14,8 @@ use App\Handlers\ImageUploadHandler;
 use PDF;
 use SnappyImage;
 use Excel;
-use App\Exports\TopicExport;
+use App\Exports\TopicsExport;
+use App\Imports\TopicsImport;
 
 class TopicsController extends Controller
 {
@@ -148,8 +149,15 @@ class TopicsController extends Controller
         return view('topics.excel');
     }
 
-    public function export(Request $request, TopicExport $export)
+    public function export(Request $request, TopicsExport $export)
     {
         return $export->withinDays($request->days);
+    }
+
+    public function import(Request $request, TopicsImport $import)
+    {
+        $import->import($request->file('excel'));
+
+        return back()->with('success', '导入成功');
     }
 }
