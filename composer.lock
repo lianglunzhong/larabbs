@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35a1425db1650b30c0cc04cb4abe546b",
+    "content-hash": "cd292e3549d816bf7bffd3fc4ba0d838",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5946,6 +5946,68 @@
                 "lumen"
             ],
             "time": "2018-10-01T09:01:30+00:00"
+        },
+        {
+            "name": "roumen/sitemap",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravelium/laravel-sitemap.git",
+                "reference": "977dda2ff52843e8162a11e5760d04372d0b04f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravelium/laravel-sitemap/zipball/977dda2ff52843e8162a11e5760d04372d0b04f8",
+                "reference": "977dda2ff52843e8162a11e5760d04372d0b04f8",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "illuminate/support": "5.5.*",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.4.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Roumen\\Sitemap\\SitemapServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Roumen\\Sitemap": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@crimsson.com",
+                    "homepage": "https://damianoff.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A not so simple sitemap generator for Laravel.",
+            "homepage": "https://damianoff.com/en/projects/laravel-sitemap",
+            "keywords": [
+                "Sitemap",
+                "generator",
+                "laravel"
+            ],
+            "abandoned": "laravelium/sitemap",
+            "time": "2017-09-07T16:19:37+00:00"
         },
         {
             "name": "simplesoftwareio/simple-qrcode",

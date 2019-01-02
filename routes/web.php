@@ -63,3 +63,8 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('zip', 'ZipController@index')->name('zip.index');
 Route::post('zip/download', 'ZipController@download')->name('zip.download');
 Route::post('zip/upload', 'ZipController@upload')->name('zip.upload');
+
+// package roumen/sitemap
+Route::get('sitemap', 'SitemapController@index')->name('sitemap.index');
+Route::get('sitemap/topics', 'SitemapController@topics')->name('sitemap.topics.index');
+Route::get('sitemap/users', 'SitemapController@users')->name('sitemap.users.index');
