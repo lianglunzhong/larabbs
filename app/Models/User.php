@@ -142,4 +142,9 @@ class User extends Authenticatable implements JWTSubject
             ->errorCorrection('H')
             ->generate(route('users.show', $this));
     }
+
+    public function visits()
+    {
+        return visits($this);
+    }
 }
