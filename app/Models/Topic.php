@@ -3,11 +3,16 @@
 namespace App\Models;
 
 use EloquentFilter\Filterable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class Topic extends Model
 {
 
-    use Filterable;
+    use Filterable, SoftDeletes;
+    use SoftCascadeTrait;
+
+    protected $softCascade = ['replies'];
 
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
