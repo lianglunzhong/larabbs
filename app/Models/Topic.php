@@ -5,16 +5,24 @@ namespace App\Models;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
+use Venturecraft\Revisionable\RevisionableTrait;
 
 class Topic extends Model
 {
 
-    use Filterable, SoftDeletes;
-    use SoftCascadeTrait;
+    use Filterable, SoftDeletes, SoftCascadeTrait, RevisionableTrait;
 
     protected $softCascade = ['replies'];
 
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
+
+    // 创建模型时是否记录
+    protected $revisionCreationsEnabled = true;
+    // 只记录的字段
+    protected $keepRevisionOf = ['title', 'category_id'];
+    // 限制某个模型的记录数
+    protected $historyLimit = 5;
+    protected $revisionCleanup = true;
 
     public function category()
     {
