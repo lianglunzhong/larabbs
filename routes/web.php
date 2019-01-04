@@ -40,7 +40,8 @@ Route::get('topics/excel', 'TopicsController@excel')->name('topics.excel');
 Route::post('topics/export', 'TopicsController@export')->name('topics.export');
 Route::post('topics/import', 'TopicsController@import')->name('topics.import');
 
-Route::get('topics/{topic}/pdf', 'TopicsController@pdf')->name('topics.pdf');
+Route::get('topics/{topic}/pdf', 'TopicsController@pdf')->name('topics.pdf')->middleware('cacheResponse:60');
+
 Route::get('topics/{topic}/image', 'TopicsController@image')->name('topics.image');
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');

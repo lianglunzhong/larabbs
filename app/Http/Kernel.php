@@ -113,5 +113,8 @@ class Kernel extends HttpKernel
 
         // CORS
         'cors' => \Barryvdh\Cors\HandleCors::class,
+
+        // 需要缓存的路由
+        'cacheResponse' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
     ];
 }
