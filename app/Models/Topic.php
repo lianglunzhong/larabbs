@@ -6,11 +6,12 @@ use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Venturecraft\Revisionable\RevisionableTrait;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Topic extends Model
 {
 
-    use Filterable, SoftDeletes, SoftCascadeTrait, RevisionableTrait;
+    use Filterable, SoftDeletes, SoftCascadeTrait, RevisionableTrait, LogsActivity;
 
     protected $softCascade = ['replies'];
 
@@ -23,6 +24,9 @@ class Topic extends Model
     // 限制某个模型的记录数
     protected $historyLimit = 5;
     protected $revisionCleanup = true;
+
+    protected static $logAttributes = ['title', 'category_id'];
+    protected static $logOnlyDirty = true;
 
     public function category()
     {
@@ -77,5 +81,25 @@ class Topic extends Model
     public function link($params = [])
     {
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        switch ($eventName) {
+            case 'created':
+                $description = '话题被创建';
+                break;
+            case 'updated':
+                $description = '话题被修改';
+                break;
+            case 'deleted':
+                $description = '话题被删除';
+                break;
+            default:
+                $description = $eventName;
+                break;
+        }
+
+        return $description;
     }
 }
