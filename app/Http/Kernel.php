@@ -67,6 +67,9 @@ class Kernel extends HttpKernel
             // 自定义的中间件： 记录用户最后活跃时间
             \App\Http\Middleware\RecordLastActivedTime::class,
 
+            // 切换语言
+            \App\Http\Middleware\ChangeLocale::class,
+
             // 记录 referer
             \Spatie\Referer\CaptureReferer::class,
 

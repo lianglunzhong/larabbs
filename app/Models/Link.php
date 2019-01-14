@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+use Spatie\Translatable\HasTranslations;
 
 class Link extends Model implements Sortable
 {
     use SortableTrait {
         scopeOrdered as sorttableScopeOrdered;
     }
+
+    use HasTranslations;
+
+    public $translatable = ['title'];
 
 
     public $sortable = [
@@ -25,7 +30,14 @@ class Link extends Model implements Sortable
 
     public function getAllCached()
     {
-        return $this->remember($this->cache_expire_in_minutes)->ordered()->get();
+        $links = $this->ordered();
+
+        if (!app()->isLocal()) {
+            $this->cachePrefix .= app()->getLocale();
+            $this->remember($this->cache_expire_in_minutes);
+        }
+
+        return $links->get();
     }
 
     public function scopeOrdered($query)
