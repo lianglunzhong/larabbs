@@ -69,3 +69,6 @@ Route::post('zip/upload', 'ZipController@upload')->name('zip.upload');
 Route::get('sitemap', 'SitemapController@index')->name('sitemap.index');
 Route::get('sitemap/topics', 'SitemapController@topics')->name('sitemap.topics.index');
 Route::get('sitemap/users', 'SitemapController@users')->name('sitemap.users.index');
+
+// package lubusin/laravel-decomposer
+Route::get('decompose','\Lubusin\Decomposer\Controllers\DecomposerController@index');
